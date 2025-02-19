@@ -1,0 +1,1 @@
+import{S as i,N as t,P as n}from"./chunk.pagination.js";/* empty css            */new i(".swiper",{modules:[t,n],loop:!0,pagination:{el:".swiper-pagination",type:"fraction"},navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"}});

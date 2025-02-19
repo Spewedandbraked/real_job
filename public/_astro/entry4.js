@@ -1,0 +1,1 @@
+import"./entry9.js";import"./chunks/chunk.script2.js";/* empty css                   */const r=document.querySelectorAll(".card");r.forEach(function(c){c.addEventListener("click",function(){const t=document.querySelectorAll(".activecard");t.length&&t.forEach(function(e){e.classList.remove("activecard")}),c.classList.add("activecard")})});
