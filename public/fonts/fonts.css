@@ -1,0 +1,44 @@
+@font-face {
+    font-family: 'coolvetica';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('coolveticaCondensedRg.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'coolvetica-light';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url('coolveticaCondensedLt.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'robotoslab';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url('RobotoSlab-Light.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'robotoslab-rg';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('RobotoSlab-Regular.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'robotoslab-m';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('RobotoSlab-Medium.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'robotoslab-sb';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('RobotoSlab-SemiBold.woff2') format('woff2');
+}

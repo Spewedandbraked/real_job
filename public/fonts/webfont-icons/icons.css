@@ -1,0 +1,71 @@
+@font-face {
+  font-family: 'icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url("icons.woff?86235d17cae652515a65c3d1d2d3b9b5") format("woff"),
+url("icons.woff2?86235d17cae652515a65c3d1d2d3b9b5") format("woff2");
+}
+
+.icon, .icon-icons {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+.icon-icons {
+  width: 1em;
+  height: 1em;
+  position: relative;
+  fill: currentColor;
+}
+
+.icon {
+  font-family: 'icons';
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+.icon-arrow-nav:before { content: "\f101"; }
+.icon-arrow:before { content: "\f102"; }
+.icon-arrrow-down:before { content: "\f103"; }
+.icon-arrrow-right:before { content: "\f104"; }
+.icon-burger-arrow:before { content: "\f105"; }
+.icon-burger:before { content: "\f106"; }
+.icon-check-mark:before { content: "\f107"; }
+.icon-check:before { content: "\f108"; }
+.icon-clock:before { content: "\f109"; }
+.icon-close:before { content: "\f10a"; }
+.icon-eye:before { content: "\f10b"; }
+.icon-glass:before { content: "\f10c"; }
+.icon-long-arrow:before { content: "\f10d"; }
+.icon-mail:before { content: "\f10e"; }
+.icon-menu-main:before { content: "\f10f"; }
+.icon-pagination-arrow:before { content: "\f110"; }
+.icon-phone:before { content: "\f111"; }
+.icon-pin:before { content: "\f112"; }
+.icon-play:before { content: "\f113"; }
+.icon-search:before { content: "\f114"; }
+.icon-step-check:before { content: "\f115"; }
