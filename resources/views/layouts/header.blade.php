@@ -2,7 +2,8 @@
     <a href="/" class="logo logo--header">
         <picture class="logo__picture">
             <source srcset="images/logo-big.png" media="(min-width: 1648px)">
-            <img class="logo__image" src="images/logo-min.png" alt="На главную" aria-label="Main" width="482" height="84">
+            <img class="logo__image" src="images/logo-min.png" alt="На главную" aria-label="Main" width="482"
+                 height="84">
         </picture>
     </a>
     <button class="burger js-burger" aria-label="Открыть меню">
@@ -62,27 +63,31 @@
             <div class="navigation">
                 <div class="navigation__inner">
                     <div class="navigation__item">
-                        <a class="navigation__link " href="content.html" title="Об учреждении">
+                        <a class="navigation__link " href="{{route('content.index')}}" title="Об учреждении">
                             Об учреждении
                             <i class="icon icon--burger-arrow icon-burger-arrow"></i>
                         </a>
-                    </div><div class="navigation__item">
-                        <a class="navigation__link " href="services.html" title="Услуги">
+                    </div>
+                    <div class="navigation__item">
+                        <a class="navigation__link " href="{{route('services.index')}}" title="Услуги">
                             Услуги
                             <i class="icon icon--burger-arrow icon-burger-arrow"></i>
                         </a>
-                    </div><div class="navigation__item">
-                        <a class="navigation__link " href="doc.html" title="Документы">
+                    </div>
+                    <div class="navigation__item">
+                        <a class="navigation__link " href="{{route('docs.index')}}" title="Документы">
                             Документы
                             <i class="icon icon--burger-arrow icon-burger-arrow"></i>
                         </a>
-                    </div><div class="navigation__item">
-                        <a class="navigation__link " href="contacts.html" title="Контакты">
+                    </div>
+                    <div class="navigation__item">
+                        <a class="navigation__link " href="{{route('contacts.index')}}" title="Контакты">
                             Контакты
                             <i class="icon icon--burger-arrow icon-burger-arrow"></i>
                         </a>
-                    </div><div class="navigation__item">
-                        <a class="navigation__link " href="news.html" title="Новости">
+                    </div>
+                    <div class="navigation__item">
+                        <a class="navigation__link " href="{{route('news.index')}}" title="Новости">
                             Новости
                             <i class="icon icon--burger-arrow icon-burger-arrow"></i>
                         </a>
