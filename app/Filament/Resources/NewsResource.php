@@ -6,7 +6,10 @@ use App\Filament\Resources\NewsResource\Pages;
 use App\Filament\Resources\NewsResource\RelationManagers;
 use App\Models\News;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -31,19 +34,6 @@ class NewsResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->label('Заголовок'),
-
-                Forms\Components\RichEditor::make('content')
-                    ->label('Контент')
-                    ->toolbarButtons([
-                        'bold', 'italic', 'underline', 'strike', 'link',
-                        'bulletList', 'orderedList', 'blockquote',
-                        'redo', 'undo', 'codeBlock'
-                    ])
-                    ->required(),
-
                 Forms\Components\TextInput::make('author')
                     ->required()
                     ->label('Автор'),
@@ -56,18 +46,56 @@ class NewsResource extends Resource
                     ->timezone('Europe/Moscow')
                     ->format('Y-m-d H:i:s'),
 
-                Forms\Components\FileUpload::make('image_path')
-                    ->label('Изображение')
-                    ->image()
-                    ->directory('uploads/images')
-                    ->label('Файл')
-                    ->getUploadedFileNameForStorageUsing(function ($file) {
-                        return $file->getClientOriginalName();
-                    }),
-
-                Forms\Components\Repeater::make('blocks')
-                    ->schema([
-                        Forms\Components\TextInput::make('title')
+                Forms\Components\Repeater::make('blocks')->schema([
+                    Select::make('type_id')
+                    ->options([
+                        1 => 'Заголовок',
+                        2 => 'Контент',
+                        3 => 'Изображение',
+                        4 => 'Заурядный блок',
+                    ])
+                    ->live(),
+                    Forms\Components\Tabs::make('tab2')
+                    ->schema(fn (Get $get):array => match ($get('type_id')){
+                        default => [Tab::make('Контент')->schema([
+                            // ...
+                            Forms\Components\RichEditor::make('content')
+                            ->label('Контент')
+                            ->toolbarButtons([
+                                'bold', 'italic', 'underline', 'strike', 'link',
+                                'bulletList', 'orderedList', 'blockquote',
+                                'redo', 'undo', 'codeBlock'
+                            ]),
+                        ])],
+                        '1' => [Tab::make('Заголовок')->schema([
+                            // ...
+                            Forms\Components\TextInput::make('title')
+                            ->label('Заголовок'),
+                        ])],
+                        /* '2' => [Tab::make('Контент')->schema([
+                            // ...
+                            Forms\Components\RichEditor::make('content')
+                            ->label('Контент')
+                            ->toolbarButtons([
+                                'bold', 'italic', 'underline', 'strike', 'link',
+                                'bulletList', 'orderedList', 'blockquote',
+                                'redo', 'undo', 'codeBlock'
+                            ]),
+                        ])], */
+                        '3' => [Tab::make('Изображение')->schema([
+                            // ...
+                            Forms\Components\FileUpload::make('image_path')
+                            ->label('Изображение')
+                            ->image()
+                            ->directory('uploads/images')
+                            ->label('Файл')
+                            ->getUploadedFileNameForStorageUsing(function ($file) {
+                                return $file->getClientOriginalName();
+                            })
+                        ])],
+                        '4' => [Tab::make('Заурядный блок')->schema([
+                            // ...
+                            Forms\Components\TextInput::make('title')
                             ->label('Заголовок'),
 
                         Forms\Components\RichEditor::make('content')
@@ -86,11 +114,13 @@ class NewsResource extends Resource
                             ->getUploadedFileNameForStorageUsing(function ($file) {
                                 return $file->getClientOriginalName();
                             })
-                    ])
-                    ->label('Блоки')
-                    ->minItems(1)
-                    ->maxItems(10)
-                    ->collapsible(),
+                        ])],
+                    })
+                ])
+                ->label('Блоки')
+                ->minItems(1)
+                ->maxItems(10)
+                ->collapsible(),
             ]);
     }
 
