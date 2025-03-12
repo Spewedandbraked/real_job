@@ -6,6 +6,7 @@ use App\Filament\Resources\NewsResource\Pages;
 use App\Filament\Resources\NewsResource\RelationManagers;
 use App\Models\News;
 use Filament\Forms;
+use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
@@ -19,7 +20,6 @@ use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class NewsResource extends Resource
@@ -50,21 +50,54 @@ class NewsResource extends Resource
                     ->default(now())
                     ->native(false)
                     ->timezone('Europe/Moscow')
-                    ->format('Y-m-d H:i:s'),
+                    ->format('d.m.Y'),
 
-                Repeater::make('blocks')->schema([
-                    Select::make('type_id')
+                Repeater::make('title')->schema([
+                    Select::make('title_type_id')
                         ->options([
-                            1 => 'Заголовок',
-                            2 => 'Контент',
-                            3 => 'Изображение',
-                            4 => 'Заурядный блок',
+                            1 => 'Обычный',
+                            2 => 'Двойной',
                         ])
                         ->live(),
-                    Tabs::make('tab2')
-                        ->schema(fn(Get $get): array => match ($get('type_id')) {
-                            default => [Tab::make('Контент')->schema([
-                                // ...
+                    Tabs::make('data')->schema(fn(Get $get): array => match ($get('title_type_id')) {
+                        default => [Tab::make('Обычный')->schema([
+                            // ...
+                            TextInput::make('title')
+                                ->label('Обычный заголовок')
+                                ->required(),
+                        ])],
+                        '2' => [Tab::make('Двойной')->schema([
+                            // ...
+                            TextInput::make('first_title')
+                                ->label('Первый заголовок')
+                                ->required(),
+                            TextInput::make('second_title')
+                                ->label('Второй заголовок')
+                                ->required(),
+                        ])],
+                    })
+
+                ])
+                    ->label('Заголовок')
+                    ->columns(2)
+                    ->addable(false)
+                    ->reorderableWithDragAndDrop(false)
+                    ->deletable(false),
+
+                Forms\Components\FileUpload::make('required_image_path')
+                    ->required()
+                    ->label('Изображение')
+                    ->image()
+                    ->directory('uploads/images')
+                    ->label('Файл')
+                    ->getUploadedFileNameForStorageUsing(function ($file) {
+                        return $file->getClientOriginalName();
+                    }),
+                Builder::make('blocks')
+                    ->blocks([
+                        Builder\Block::make('Content')
+                            ->schema([
+                                //...
                                 RichEditor::make('content')
                                     ->label('Контент')
                                     ->toolbarButtons([
@@ -80,24 +113,10 @@ class NewsResource extends Resource
                                         'undo',
                                         'codeBlock'
                                     ]),
-                            ])],
-                            '1' => [Tab::make('Заголовок')->schema([
-                                // ...
-                                TextInput::make('title')
-                                    ->label('Заголовок'),
-                            ])],
-                            /* '2' => [Tab::make('Контент')->schema([
-                            // ...
-                            Forms\Components\RichEditor::make('content')
-                            ->label('Контент')
-                            ->toolbarButtons([
-                                'bold', 'italic', 'underline', 'strike', 'link',
-                                'bulletList', 'orderedList', 'blockquote',
-                                'redo', 'undo', 'codeBlock'
                             ]),
-                        ])], */
-                            '3' => [Tab::make('Изображение')->schema([
-                                // ...
+                        Builder\Block::make('Image')
+                            ->schema([
+                                //...
                                 FileUpload::make('image_path')
                                     ->label('Изображение')
                                     ->image()
@@ -106,9 +125,10 @@ class NewsResource extends Resource
                                     ->getUploadedFileNameForStorageUsing(function ($file) {
                                         return $file->getClientOriginalName();
                                     })
-                            ])],
-                            '4' => [Tab::make('Заурядный блок')->schema([
-                                // ...
+                            ]),
+                        Builder\Block::make('Multiple Fields')
+                            ->schema([
+                                //...
                                 TextInput::make('title')
                                     ->label('Заголовок'),
                                 RichEditor::make('content')
@@ -135,12 +155,18 @@ class NewsResource extends Resource
                                     ->getUploadedFileNameForStorageUsing(function ($file) {
                                         return $file->getClientOriginalName();
                                     })
-                            ])],
-                        })
-                ])
+                            ]),
+                        Builder\Block::make('Цитата (BlockQuote)')
+                            ->schema([
+                                //...
+                                TextInput::make('quote')
+                                    ->label('Цитата'),
+                            ]),
+                    ])
                     ->label('Блоки')
                     ->minItems(1)
                     ->maxItems(10)
+                    ->columnSpan('full')
                     ->collapsible(),
             ]);
     }
@@ -149,8 +175,20 @@ class NewsResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')
-                    ->label('Заголовок'),
+                Tables\Columns\TextColumn::make('title')->formatStateUsing(function ($state): string {
+                    $a = json_decode($state, true);
+                    switch ($a) {
+                        case ($a['title_type_id'] == null) or ($a['title_type_id'] == 1):
+                            return $a['title'];
+                        case $a['title_type_id'] == 2:
+                            return $a['first_title'] . ' ' . $a['second_title'];
+                        default:
+                            return 'error';
+                    }
+                    return 'error';
+                })
+                    ->label('Заголовок')
+                    ->limit(50),
 
                 Tables\Columns\TextColumn::make('author')
                     ->label('Автор'),

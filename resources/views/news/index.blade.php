@@ -1,13 +1,13 @@
 @extends('layouts.main')
-@section('title','Новости')
+@section('title', 'Новости')
 @section('content')
     <aside class="aside">
         <div class="category js-list">
             <button aria-label class="category__text js-button">
                 Новости
                 <span>
-            <i class="icon icon--undefined icon-arrrow-down"></i>
-        </span>
+                    <i class="icon icon--undefined icon-arrrow-down"></i>
+                </span>
             </button>
             <div class="category__list js-scroll category__list--nonum">
                 <div class="category__line">
@@ -118,48 +118,26 @@
             <div class="content__left-block">
                 <div class="news-block">
                     <ul class="news-block__list">
-                        <li class="news-block__item">
-                            <picture class="news-block__picture">
-                                <img class="news-block__image" src="images/newslist/img-5.png" alt width="392"
-                                     height="237">
-                            </picture>
-                            <span class="news-block__info">
-                        <span class="news-block__date">27.11.2024</span>
-                        <a href="news-detail.html" class="news-block__title">
-                            <span class="news-block__part">ОДОБРЕНО МОГЭ:</span>
-                            РЕКОНСТРУКЦИЯ КЛИНСКОЙ ШКОЛЫ ОЛИМПИЙСКОГО РЕЗЕРВА
-                        </a>
-                        <span class="news-block__text">ГАУ Московской области «Мособлгосэкспертиза» выпустило положительное заключение на проектную документацию по реконструкции Муниципального автономного учреждения городского округа Клин «Клинская спортивная школа олимпийского резерва».</span>
-                    </span>
-                        </li>
-                        <li class="news-block__item">
-                            <picture class="news-block__picture">
-                                <img class="news-block__image" src="images/newslist/img-6.png" alt width="392"
-                                     height="237">
-                            </picture>
-                            <span class="news-block__info">
-                        <span class="news-block__date">27.11.2024</span>
-                        <a href="news-detail.html" class="news-block__title">
-                            <span class="news-block__part"></span>
-                            ПРОЕКТИРОВАНИЕ СОЦИАЛЬНЫХ ОБЪЕКТОВ — ПОД КОНТРОЛЕМ МОСОБЛГОСЭКСПЕРТИЗЫ
-                        </a>
-                        <span class="news-block__text">7 ноября в ГАУ МO «Мособлгосэкспертиза» под председательством заместителя директора МОГЭ О. Г. Валова прошло совещание «Объекты, включенные в инвестиционные программы Московской области, со сроком сдачи в эксплуатацию в 2024 году и сроком завершения ПИР в 2024 году».</span>
-                    </span>
-                        </li>
-                        <li class="news-block__item">
-                            <picture class="news-block__picture">
-                                <img class="news-block__image" src="images/newslist/img-7.png" alt width="392"
-                                     height="237">
-                            </picture>
-                            <span class="news-block__info">
-                        <span class="news-block__date">27.11.2024</span>
-                        <a href="news-detail.html" class="news-block__title">
-                            <span class="news-block__part"></span>
-                            ПРОЕКТИРОВАНИЕ СОЦИАЛЬНЫХ ОБЪЕКТОВ — ПОД КОНТРОЛЕМ МОСОБЛГОСЭКСПЕРТИЗЫ
-                        </a>
-                        <span class="news-block__text">7 ноября в ГАУ МO «Мособлгосэкспертиза» под председательством заместителя директора МОГЭ О. Г. Валова прошло совещание «Объекты, включенные в инвестиционные программы Московской области, со сроком сдачи в эксплуатацию в 2024 году и сроком завершения ПИР в 2024 году».</span>
-                    </span>
-                        </li>
+                        @isset($news)
+                            @foreach ($news as $article)
+                                <li class="news-block__item">
+                                    <picture class="news-block__picture">
+                                        <img class="news-block__image" src="{{ 'storage/' . $article->required_image_path }}"
+                                            alt width="392" height="237">
+                                    </picture>
+                                    <span class="news-block__info">
+                                        <span class="news-block__date">{{ $article->published_at }}</span>
+                                        <a href="{{ route('news.article', ['article' => $article['id']]) }}"
+                                            class="news-block__title">
+                                            <x-news.title :data="$article['title']" />
+                                        </a>
+                                        <span class="news-block__text"><x-news.content :data="$article['blocks']" :cutter="true" /></span>
+                                    </span>
+                                </li>
+                            @endforeach
+                        @else
+                            @dump('no news found')
+                        @endisset
                     </ul>
                     <div class="pagination">
                         <a href="javascript:void(0);" class="pagination__link pagination__link--prev" title><i
