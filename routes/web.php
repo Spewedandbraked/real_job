@@ -19,4 +19,5 @@ Route::get('/content/{article}', [ContentController::class, 'article'])->name('c
 Route::get('/docs', [DocsController::class, 'index'])->name('docs.index');
 
 Route::get('/news', [NewsController::class, 'index'])->name('news.index');
+Route::post('/news', [NewsController::class, 'index'])->name('news.date');
 Route::get('/news/{article}', [NewsController::class, 'article'])->name('news.article');

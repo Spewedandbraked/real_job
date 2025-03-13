@@ -41,13 +41,12 @@ class NewsResource extends Resource
                     ->required()
                     ->label('Автор'),
 
-                DateTimePicker::make('published_at')
+                DateTimePicker::make('created_at')
                     ->label('Дата публикации')
                     ->required()
                     ->default(now())
                     ->native(false)
-                    ->timezone('Europe/Moscow')
-                    ->format('d.m.Y'),
+                    ->timezone('Europe/Moscow'),
 
                 Repeater::make('title')->schema([
                     Select::make('title_type_id')
@@ -118,7 +117,7 @@ class NewsResource extends Resource
                 Tables\Columns\TextColumn::make('author')
                     ->label('Автор'),
 
-                Tables\Columns\TextColumn::make('published_at')
+                Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->label('Дата публикации'),
             ])
