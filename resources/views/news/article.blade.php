@@ -117,8 +117,8 @@
         <div class="content">
             <div class="content__left-block">
                 <picture class="content__picture">
-                    <source srcset="{{ 'storage/' . $article->required_image_path }}">
-                    <img src="{{ 'storage/' . $article->required_image_path }}" alt width height>
+                    <source srcset="{{ asset('storage/' . $article->required_image_path) }}">
+                    <img src="{{ asset('storage/' . $article->required_image_path) }}" alt width height>
                 </picture>
                 <div class="article">
                     <h2><x-news.title :data="$article['title']" /></h2>
@@ -126,8 +126,8 @@
                         @switch($block['type'])
                             @case('Image')
                                 <picture class="content__picture">
-                                    <source srcset="{{ 'storage/' . $block['data']['image_path'] }}">
-                                    <img src="{{ 'storage/' . $block['data']['image_path'] }}" alt width height>
+                                    <source srcset="{{ asset('storage/' . $block['data']['image_path']) }}">
+                                    <img src="{{ asset('storage/' . $block['data']['image_path']) }}" alt width height>
                                 </picture>
                             @break
 
@@ -139,7 +139,7 @@
                             @break
 
                             @case('Цитата (BlockQuote)')
-                                <blockquote>{{$block['data']['quote']}}</blockquote>
+                                <blockquote>{{ $block['data']['quote'] }}</blockquote>
                             @break
 
                             @default
@@ -151,48 +151,19 @@
             <div class="content__right-block">
                 <div class="news-archive">
                     <ul class="news-archive__list">
-                        <li class="news-archive__item">
-                            <a href="news-detail.html" class="news-archive__link">
-                                <span class="news-archive__title">
-
-                                    21.03.2023
-                                </span>
-                                <span class="news-archive__text">Выпущено положительное заключение к&nbsp;проектной
-                                    документации на&nbsp;строительство поликлиники смешанного типа</span>
-                            </a>
-                        </li>
-                        <li class="news-archive__item">
-                            <a href="news-detail.html" class="news-archive__link">
-                                <span class="news-archive__title">
-
-                                    07.11.2024
-                                </span>
-                                <span class="news-archive__text">Информация директора ГАУ
-                                    МО&nbsp;&laquo;Мособлгосэкспертиза&raquo; о&nbsp;сроках завершения оказания услуг
-                                    в&nbsp;2024 году</span>
-                            </a>
-                        </li>
-                        <li class="news-archive__item">
-                            <a href="news-detail.html" class="news-archive__link">
-                                <span class="news-archive__title">
-
-                                    25.10.2024
-                                </span>
-                                <span class="news-archive__text">Состоялось очередное заседание Московской областной
-                                    комиссии по&nbsp;индексации цен и&nbsp;ценообразованию в&nbsp;строительстве</span>
-                            </a>
-                        </li>
-                        <li class="news-archive__item">
-                            <a href="news-detail.html" class="news-archive__link">
-                                <span class="news-archive__title">
-
-                                    21.03.2023
-                                </span>
-                                <span class="news-archive__text">Опубликована информация по&nbsp;подготовке к&nbsp;переходу
-                                    на&nbsp;ресурсно-индексный метод определения стоимости строительства</span>
-                            </a>
-                        </li>
-                        <li class="news-archive__item">
+                        @foreach ($news as $article)
+                            <li class="news-archive__item">
+                                <a href="{{ route('news.article', ['article' => $article['id']]) }}"
+                                    class="news-archive__link">
+                                    <span class="news-archive__title">
+                                        {{ $article['published_at'] }}
+                                    </span>
+                                    <span class="news-archive__text"><x-news.content :data="$article['blocks']"
+                                            :cutter="true" /></span>
+                                </a>
+                            </li>
+                        @endforeach
+                        {{-- <li class="news-archive__item">
                             <a href="news-detail.html" class="news-archive__link">
                                 <span class="news-archive__title">
                                     <mark>Анонс.</mark>
@@ -201,29 +172,9 @@
                                 <span class="news-archive__text">Приглашаем всех желающих принять участие в&nbsp;вебинарах,
                                     которые проходят еженедельно по&nbsp;пятницам в&nbsp;11.00&nbsp;часов.</span>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="news-archive__item">
-                            <a href="news-detail.html" class="news-archive__link">
-                                <span class="news-archive__title">
-
-                                    21.03.2023
-                                </span>
-                                <span class="news-archive__text">Опубликована информация по&nbsp;подготовке к&nbsp;переходу
-                                    на&nbsp;ресурсно-индексный метод определения стоимости строительства</span>
-                            </a>
-                        </li>
-                        <li class="news-archive__item">
-                            <a href="news-detail.html" class="news-archive__link">
-                                <span class="news-archive__title">
-
-                                    21.03.2023
-                                </span>
-                                <span class="news-archive__text">Опубликована информация по&nbsp;подготовке к&nbsp;переходу
-                                    на&nbsp;ресурсно-индексный метод определения стоимости строительства</span>
-                            </a>
-                        </li>
-                        <li class="news-archive__item">
-                            <a href="{{ route('news.index')}}" class="news-archive__link">
+                            <a href="{{ route('news.index') }}" class="news-archive__link">
                                 Продолжение новостей
                                 <i class="icon icon--arrow-nav icon-arrow-nav"></i>
                             </a>

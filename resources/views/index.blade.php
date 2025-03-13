@@ -119,7 +119,7 @@
                             </a>
                         </li>
                         <li class="news-archive__item">
-                            <a href="news.html" class="news-archive__link">
+                            <a href="{{route('news.index')}}" class="news-archive__link">
                                 Продолжение новостей
                                 <i class="icon icon--arrow-nav icon-arrow-nav"></i>
                             </a>
