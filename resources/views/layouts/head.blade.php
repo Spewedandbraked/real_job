@@ -16,12 +16,13 @@
 
     <link rel="icon" type="image/svg+xml" href="/favicon.ico">
     <!-- Import fonts start -->
-    <style>@font-face {
+    <style>
+        @font-face {
             font-family: 'icons';
             font-style: normal;
             font-weight: 400;
             src: url("icons.woff?86235d17cae652515a65c3d1d2d3b9b5") format("woff"),
-            url("icons.woff2?86235d17cae652515a65c3d1d2d3b9b5") format("woff2")
+                url("icons.woff2?86235d17cae652515a65c3d1d2d3b9b5") format("woff2")
         }
 
         .icon {
@@ -77,6 +78,7 @@
         }
 
         @charset "UTF-8";
+
         .header {
             padding: 12px 0;
             margin-bottom: 24px;
@@ -131,7 +133,9 @@
             border: none
         }
 
-        .burger__line, .burger:before, .burger:after {
+        .burger__line,
+        .burger:before,
+        .burger:after {
             content: "";
             width: 100%;
             height: 4px;
@@ -139,14 +143,21 @@
             display: block
         }
 
-        @media (hover: none),(pointer: coarse) {
-            .burger:active .burger__line, .burger:active:before, .burger:active:after {
+        @media (hover: none),
+        (pointer: coarse) {
+
+            .burger:active .burger__line,
+            .burger:active:before,
+            .burger:active:after {
                 background: var(--cl-dark-blue)
             }
         }
 
         @media not all and (pointer: coarse) {
-            .burger:hover .burger__line, .burger:hover:before, .burger:hover:after {
+
+            .burger:hover .burger__line,
+            .burger:hover:before,
+            .burger:hover:after {
                 background: var(--cl-dark-blue)
             }
         }
@@ -245,7 +256,10 @@
             }
         }
 
-        input[type=search]::-webkit-search-decoration, input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-search-results-button, input[type=search]::-webkit-search-results-decoration {
+        input[type=search]::-webkit-search-decoration,
+        input[type=search]::-webkit-search-cancel-button,
+        input[type=search]::-webkit-search-results-button,
+        input[type=search]::-webkit-search-results-decoration {
             -webkit-appearance: none
         }
 
@@ -278,12 +292,14 @@
             appearance: none
         }
 
-        .input__input-field:focus, .input__input-field:focus-visible {
+        .input__input-field:focus,
+        .input__input-field:focus-visible {
             outline: none;
             border: 1px solid var(--cl-blue)
         }
 
-        .input__input-field:focus:hover, .input__input-field:focus-visible:hover {
+        .input__input-field:focus:hover,
+        .input__input-field:focus-visible:hover {
             box-shadow: none
         }
 
@@ -484,7 +500,8 @@
                 font-size: 22px
             }
 
-            .input--search .input__input-field, .input--search .input__input-field[placeholder] {
+            .input--search .input__input-field,
+            .input--search .input__input-field[placeholder] {
                 font-size: 22px
             }
 
@@ -582,6 +599,7 @@
         }
 
         @charset "UTF-8";
+
         .service {
             padding: 0;
             list-style-type: none;
@@ -677,10 +695,12 @@
                     color: var(--cl-blue);
                     background: var(--cl-white)
                 }
-            }.service .icon--service {
-                 width: calc((100vw - 96px + 25px) / 12 * 2);
-                 padding-left: 20px
-             }
+            }
+
+            .service .icon--service {
+                width: calc((100vw - 96px + 25px) / 12 * 2);
+                padding-left: 20px
+            }
         }
 
         @media (min-width: 1155px) {
@@ -1175,7 +1195,8 @@
             transition: color .3s ease
         }
 
-        @media (hover: none),(pointer: coarse) {
+        @media (hover: none),
+        (pointer: coarse) {
             .news-archive__link:active {
                 color: var(--cl-blue)
             }
@@ -1243,8 +1264,8 @@
             .news-archive__list {
                 display: grid;
                 gap: var(--space-m);
-                grid-template-columns:repeat(2, 1fr);
-                grid-template-rows:repeat(4, auto);
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(4, auto);
                 grid-auto-flow: column
             }
 
@@ -1385,6 +1406,7 @@
         }
 
         @charset "UTF-8";
+
         .link {
             display: inline;
             text-decoration: none;
@@ -1394,7 +1416,8 @@
             -moz-appearance: none
         }
 
-        @media (hover: none),(pointer: coarse) {
+        @media (hover: none),
+        (pointer: coarse) {
             .link:active {
                 color: var(--cl-blue)
             }
@@ -1421,7 +1444,8 @@
             margin-bottom: 15px
         }
 
-        @media (hover: none),(pointer: coarse) {
+        @media (hover: none),
+        (pointer: coarse) {
             .link--lk:active {
                 color: var(--cl-white)
             }
@@ -1443,7 +1467,8 @@
             margin-bottom: auto
         }
 
-        @media (hover: none),(pointer: coarse) {
+        @media (hover: none),
+        (pointer: coarse) {
             .link--eye:active {
                 color: var(--cl-white)
             }
@@ -1467,7 +1492,8 @@
             text-transform: uppercase
         }
 
-        @media (hover: none),(pointer: coarse) {
+        @media (hover: none),
+        (pointer: coarse) {
             .link--tech:active {
                 color: var(--cl-white)
             }
@@ -1516,7 +1542,8 @@
             }
         }
 
-        @media (min-width: 1024px) and (hover: none),(min-width: 1024px) and (pointer: coarse) {
+        @media (min-width: 1024px) and (hover: none),
+        (min-width: 1024px) and (pointer: coarse) {
             .link--lk:active {
                 color: var(--cl-dark-blue)
             }
@@ -1527,14 +1554,17 @@
                 .link--lk:hover {
                     color: var(--cl-dark-blue)
                 }
-            }.link--eye {
-            order: 2;
-            color: var(--cl-blue);
-            margin-bottom: 0
-        }
+            }
+
+            .link--eye {
+                order: 2;
+                color: var(--cl-blue);
+                margin-bottom: 0
+            }
         }
 
-        @media (min-width: 1024px) and (hover: none),(min-width: 1024px) and (pointer: coarse) {
+        @media (min-width: 1024px) and (hover: none),
+        (min-width: 1024px) and (pointer: coarse) {
             .link--eye:active {
                 color: var(--cl-dark-blue)
             }
@@ -1545,9 +1575,11 @@
                 .link--eye:hover {
                     color: var(--cl-dark-blue)
                 }
-            }.link--eye .link__inner {
-            display: none
-        }
+            }
+
+            .link--eye .link__inner {
+                display: none
+            }
 
             .link--phone {
                 display: block;
@@ -1586,7 +1618,12 @@
         }
 
         @media (min-width: 1648px) {
-            .link--eye .link__inner, .link--lk, .link--tech, .link--phone, .link--footer-tech {
+
+            .link--eye .link__inner,
+            .link--lk,
+            .link--tech,
+            .link--phone,
+            .link--footer-tech {
                 font-size: 22px
             }
         }
@@ -1612,14 +1649,16 @@
             border-style: none
         }
 
-        button, input {
+        button,
+        input {
             font-family: inherit;
             font-size: 100%;
             line-height: 1.15;
             margin: 0
         }
 
-        button, input {
+        button,
+        input {
             overflow: visible
         }
 
@@ -1649,11 +1688,14 @@
             -webkit-appearance: none
         }
 
-        *, *:before, *:after {
+        *,
+        *:before,
+        *:after {
             box-sizing: border-box
         }
 
-        html, body {
+        html,
+        body {
             height: 100%;
             background-color: var(--cl-white)
         }
@@ -1736,7 +1778,7 @@
             transition: margin .3s ease
         }
 
-        .header + .main {
+        .header+.main {
             margin-top: 150px
         }
 
@@ -1745,7 +1787,7 @@
         }
 
         @media (min-width: 768px) {
-            .header + .main {
+            .header+.main {
                 margin-top: 162px
             }
 
@@ -1760,7 +1802,7 @@
                 gap: 25px
             }
 
-            .header + .main {
+            .header+.main {
                 margin-top: 162px
             }
 
@@ -1789,7 +1831,7 @@
                 width: calc((100vw - 96px + 25px) / 12 * 8.5 - 25px)
             }
 
-            .header + .main {
+            .header+.main {
                 margin-top: 166px
             }
         }
@@ -1801,7 +1843,7 @@
         }
 
         @media (min-width: 1648px) {
-            .header + .main {
+            .header+.main {
                 margin-top: 210px
             }
 
@@ -1820,7 +1862,7 @@
         }
 
         @media (min-width: 1803px) {
-            .header + .main {
+            .header+.main {
                 margin-top: 220px
             }
         }
@@ -1842,6 +1884,7 @@
         }
 
         @charset "UTF-8";
+
         .navigation {
             order: 3;
             width: 100%;
@@ -1895,7 +1938,8 @@
             }
         }
 
-        @media (min-width: 1024px) and (hover: none),(min-width: 1024px) and (pointer: coarse) {
+        @media (min-width: 1024px) and (hover: none),
+        (min-width: 1024px) and (pointer: coarse) {
             .navigation__link:active {
                 color: var(--cl-blue)
             }
@@ -1990,7 +2034,8 @@
                 gap: 20px
             }
 
-            .social__link, .social__image {
+            .social__link,
+            .social__image {
                 width: 48px;
                 height: 48px
             }
@@ -2016,7 +2061,8 @@
             }
         }
 
-        @media (min-width: 1024px) and (hover: none),(min-width: 1024px) and (pointer: coarse) {
+        @media (min-width: 1024px) and (hover: none),
+        (min-width: 1024px) and (pointer: coarse) {
             .social__link:active {
                 background: var(--cl-blue)
             }
@@ -2027,10 +2073,12 @@
                 .social__link:hover {
                     background: var(--cl-blue)
                 }
-            }.social__image {
-            width: 32px;
-            height: 32px
-        }
+            }
+
+            .social__image {
+                width: 32px;
+                height: 32px
+            }
         }
 
         @media (min-width: 1155px) {
@@ -2058,7 +2106,8 @@
                 gap: 8px
             }
 
-            .social__link, .social__image {
+            .social__link,
+            .social__image {
                 width: 35px;
                 height: 35px
             }
@@ -2185,7 +2234,8 @@
             }
         }
 
-        @media (min-width: 1024px) and (hover: none),(min-width: 1024px) and (pointer: coarse) {
+        @media (min-width: 1024px) and (hover: none),
+        (min-width: 1024px) and (pointer: coarse) {
             .search__preview:active {
                 color: var(--cl-dark-blue)
             }
@@ -2196,11 +2246,13 @@
                 .search__preview:hover {
                     color: var(--cl-dark-blue)
                 }
-            }.search--header {
-            width: 32px;
-            height: 32px;
-            margin: 0
-        }
+            }
+
+            .search--header {
+                width: 32px;
+                height: 32px;
+                margin: 0
+            }
 
             .search--header .search__form {
                 left: -10px;
@@ -2250,6 +2302,7 @@
         }
 
         @charset "UTF-8";
+
         .slider-pagination {
             z-index: 1;
             display: flex;
@@ -2268,7 +2321,8 @@
             color: var(--cl-white)
         }
 
-        .slider-pagination__prev, .slider-pagination__next {
+        .slider-pagination__prev,
+        .slider-pagination__next {
             width: 40px;
             height: 40px;
             display: flex;
@@ -2281,14 +2335,19 @@
             transition: background .3s ease
         }
 
-        @media (hover: none),(pointer: coarse) {
-            .slider-pagination__prev:active, .slider-pagination__next:active {
+        @media (hover: none),
+        (pointer: coarse) {
+
+            .slider-pagination__prev:active,
+            .slider-pagination__next:active {
                 background: var(--cl-blue)
             }
         }
 
         @media not all and (pointer: coarse) {
-            .slider-pagination__prev:hover, .slider-pagination__next:hover {
+
+            .slider-pagination__prev:hover,
+            .slider-pagination__next:hover {
                 background: var(--cl-blue);
                 cursor: pointer
             }
@@ -2323,7 +2382,8 @@
                 letter-spacing: -1px
             }
 
-            .slider-pagination__prev, .slider-pagination__next {
+            .slider-pagination__prev,
+            .slider-pagination__next {
                 width: 40px;
                 height: 40px;
                 display: flex;
@@ -2371,6 +2431,7 @@
         }
 
         @charset "UTF-8";
+
         .icon--service {
             display: none
         }
@@ -2475,6 +2536,7 @@
         }
 
         @charset "UTF-8";
+
         .button {
             display: inline-block;
             text-decoration: none;
@@ -2506,7 +2568,8 @@
             transition: background .3s ease
         }
 
-        @media (hover: none),(pointer: coarse) {
+        @media (hover: none),
+        (pointer: coarse) {
             .button:active {
                 background: var(--cl-dark-blue);
                 color: var(--cl-white)
@@ -2594,17 +2657,19 @@
             --cl-dark-blue: #1f2772;
             --cl-dark-back: #293393;
             --cl-beige: #8C8C8C
-        }</style>
-    <link rel="stylesheet" href="fonts/webfont-icons/icons.css" crossorigin media="print" onload="this.media='all'">
+        }
+    </style>
+    <link rel="stylesheet" href="{{ asset('fonts/webfont-icons/icons.css') }}" crossorigin media="print"
+        onload="this.media='all'">
     <noscript>
-        <link rel="stylesheet" href="fonts/webfont-icons/icons.css" crossorigin>
+        <link rel="stylesheet" href="{{ asset('fonts/webfont-icons/icons.css') }}" crossorigin>
     </noscript>
-    <link rel="stylesheet" href="fonts/fonts.css" crossorigin media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="{{ asset('fonts/fonts.css') }}" crossorigin media="print" onload="this.media='all'">
     <noscript>
-        <link rel="stylesheet" href="fonts/fonts.css" crossorigin>
+        <link rel="stylesheet" href="{{ asset('fonts/fonts.css') }}" crossorigin>
     </noscript>
     <!-- Import fonts end -->
-    <title>@yield('title','Главная')</title>
+    <title>@yield('title', 'Главная')</title>
     <meta name="generator" content="Astro v2.10.15">
     <meta name="description">
     <meta name="keywords">
@@ -2614,37 +2679,42 @@
     <meta property="og:url" content>
     <meta property="og:description">
 
-    <link rel="stylesheet" href="{{asset('_astro/assets/asset.Gui-1.css')}}" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="{{ asset('_astro/assets/asset.Gui-1.css') }}" media="print" onload="this.media='all'">
     <noscript>
-        <link rel="stylesheet" href="{{asset('_astro/assets/asset.Gui-1.css')}}">
+        <link rel="stylesheet" href="{{ asset('_astro/assets/asset.Gui-1.css') }}">
     </noscript>
-    <link rel="stylesheet" href="{{asset('_astro/assets/asset.index.css')}}" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="{{ asset('_astro/assets/asset.index.css') }}" media="print" onload="this.media='all'">
     <noscript>
-        <link rel="stylesheet" href="{{asset('_astro/assets/asset.index.css')}}">
+        <link rel="stylesheet" href="{{ asset('_astro/assets/asset.index.css') }}">
     </noscript>
-    <link rel="stylesheet" href="{{asset('_astro/assets/asset.vendor.css')}}" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="{{ asset('_astro/assets/asset.vendor.css') }}" media="print"
+        onload="this.media='all'">
     <noscript>
-        <link rel="stylesheet" href="{{asset('_astro/assets/asset.vendor.css')}}">
+        <link rel="stylesheet" href="{{ asset('_astro/assets/asset.vendor.css') }}">
     </noscript>
-    <link rel="stylesheet" href="{{asset('_astro/assets/asset.Gui.css')}}" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="{{ asset('_astro/assets/asset.Gui.css') }}" media="print" onload="this.media='all'">
     <noscript>
-        <link rel="stylesheet" href="{{asset('_astro/assets/asset.Gui.css')}}">
+        <link rel="stylesheet" href="{{ asset('_astro/assets/asset.Gui.css') }}">
     </noscript>
-    <link rel="stylesheet" href="{{asset('_astro/assets/asset.Gui-2.css')}}" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="{{ asset('_astro/assets/asset.Gui-2.css') }}" media="print"
+        onload="this.media='all'">
     <noscript>
-        <link rel="stylesheet" href="{{asset('_astro/assets/asset.Gui-2.css')}}">
+        <link rel="stylesheet" href="{{ asset('_astro/assets/asset.Gui-2.css') }}">
     </noscript>
-    <link rel="stylesheet" href="{{asset('_astro/assets/asset.construction.css')}}" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="{{ asset('_astro/assets/asset.construction.css') }}" media="print"
+        onload="this.media='all'">
     <noscript>
-        <link rel="stylesheet" href="{{asset('_astro/assets/asset.construction.css')}}">
+        <link rel="stylesheet" href="{{ asset('_astro/assets/asset.construction.css') }}">
     </noscript>
-    <link rel="stylesheet" href="{{asset('_astro/assets/asset.assessment-services.css')}}" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="{{ asset('_astro/assets/asset.assessment-services.css') }}" media="print"
+        onload="this.media='all'">
     <noscript>
-        <link rel="stylesheet" href="{{asset('_astro/assets/asset.assessment-services.css')}}">
+        <link rel="stylesheet" href="{{ asset('_astro/assets/asset.assessment-services.css') }}">
     </noscript>
-    <link rel="stylesheet" href="{{asset('_astro/assets/asset.contacts.css')}}" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="{{ asset('_astro/assets/asset.contacts.css') }}" media="print"
+        onload="this.media='all'">
     <noscript>
-        <link rel="stylesheet" href="{{asset('_astro/assets/asset.contacts.css')}}">
+        <link rel="stylesheet" href="{{ asset('_astro/assets/asset.contacts.css') }}">
     </noscript>
-    <script type="module" src="{{asset('_astro/entry5.js')}}"></script>
+    <script type="module" src="{{ asset('_astro/entry5.js') }}"></script>
 </head>

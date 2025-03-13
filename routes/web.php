@@ -18,4 +18,4 @@ Route::get('/content', [ContentController::class, 'index'])->name('content.index
 Route::get('/docs', [DocsController::class, 'index'])->name('docs.index');
 
 Route::get('/news', [NewsController::class, 'index'])->name('news.index');
-Route::get('/news{article}', [NewsController::class, 'article'])->name('news.article');
+Route::get('/news/{article}', [NewsController::class, 'article'])->name('news.article');

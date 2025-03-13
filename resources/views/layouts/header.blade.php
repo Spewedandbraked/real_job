@@ -1,9 +1,9 @@
 <header class="header" id="header">
     <a href="/" class="logo logo--header">
         <picture class="logo__picture">
-            <source srcset="images/logo-big.png" media="(min-width: 1648px)">
-            <img class="logo__image" src="images/logo-min.png" alt="На главную" aria-label="Main" width="482"
-                 height="84">
+            <source srcset="{{ asset('images/logo-big.png" media="(min-width: 1648px)') }}">
+            <img class="logo__image" src="{{ asset('images/logo-min.png') }}" alt="На главную" aria-label="Main"
+                width="482" height="84">
         </picture>
     </a>
     <button class="burger js-burger" aria-label="Открыть меню">
@@ -32,7 +32,8 @@
                 </div>
                 <form class="search__form">
                     <div class="input input--search">
-                        <input class="input__input-field" id="search" name="search" placeholder="Поиск" type="search">
+                        <input class="input__input-field" id="search" name="search" placeholder="Поиск"
+                            type="search">
                     </div>
                     <button class="button button--bright button--search button--absolute js-button-search">
                         Найти
@@ -48,46 +49,51 @@
 
                 <div class="social__list">
                     <a href="javascript:void(0);" class="social__link" target="_blank">
-                        <img class="social__image" src="images/social/vk.svg" alt width="32" height="32">
+                        <img class="social__image" src="{{ asset('images/social/vk.svg') }}" alt width="32"
+                            height="32">
                     </a><a href="javascript:void(0);" class="social__link" target="_blank">
-                        <img class="social__image" src="images/social/tg.svg" alt width="32" height="32">
+                        <img class="social__image" src="{{ asset('images/social/tg.svg') }}" alt width="32"
+                            height="32">
                     </a><a href="javascript:void(0);" class="social__link" target="_blank">
-                        <img class="social__image" src="images/social/ok.svg" alt width="32" height="32">
+                        <img class="social__image" src="{{ asset('images/social/ok.svg') }}" alt width="32"
+                            height="32">
                     </a><a href="javascript:void(0);" class="social__link" target="_blank">
-                        <img class="social__image" src="images/social/ru.svg" alt width="32" height="32">
+                        <img class="social__image" src="{{ asset('images/social/ru.svg') }}" alt width="32"
+                            height="32">
                     </a><a href="javascript:void(0);" class="social__link" target="_blank">
-                        <img class="social__image" src="images/social/smth.svg" alt width="32" height="32">
+                        <img class="social__image" src="{{ asset('images/social/smth.svg') }}" alt width="32"
+                            height="32">
                     </a>
                 </div>
             </div>
             <div class="navigation">
                 <div class="navigation__inner">
                     <div class="navigation__item">
-                        <a class="navigation__link " href="{{route('content.index')}}" title="Об учреждении">
+                        <a class="navigation__link " href="{{ route('content.index') }}" title="Об учреждении">
                             Об учреждении
                             <i class="icon icon--burger-arrow icon-burger-arrow"></i>
                         </a>
                     </div>
                     <div class="navigation__item">
-                        <a class="navigation__link " href="{{route('services.index')}}" title="Услуги">
+                        <a class="navigation__link " href="{{ route('services.index') }}" title="Услуги">
                             Услуги
                             <i class="icon icon--burger-arrow icon-burger-arrow"></i>
                         </a>
                     </div>
                     <div class="navigation__item">
-                        <a class="navigation__link " href="{{route('docs.index')}}" title="Документы">
+                        <a class="navigation__link " href="{{ route('docs.index') }}" title="Документы">
                             Документы
                             <i class="icon icon--burger-arrow icon-burger-arrow"></i>
                         </a>
                     </div>
                     <div class="navigation__item">
-                        <a class="navigation__link " href="{{route('contacts.index')}}" title="Контакты">
+                        <a class="navigation__link " href="{{ route('contacts.index') }}" title="Контакты">
                             Контакты
                             <i class="icon icon--burger-arrow icon-burger-arrow"></i>
                         </a>
                     </div>
                     <div class="navigation__item">
-                        <a class="navigation__link " href="{{route('news.index')}}" title="Новости">
+                        <a class="navigation__link " href="{{ route('news.index') }}" title="Новости">
                             Новости
                             <i class="icon icon--burger-arrow icon-burger-arrow"></i>
                         </a>

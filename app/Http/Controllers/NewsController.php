@@ -17,8 +17,10 @@ class NewsController extends Controller
     public function article($id)
     {
         $article = News::where('id', '=', $id)->first();
+        $news = News::latest()->take(5)->get();
         return view('news/article', [
             'article' => $article,
+            'news' => $news
         ]);
     }
 }
