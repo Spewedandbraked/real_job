@@ -5,12 +5,9 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\NewsResource\Pages;
 use App\Filament\Resources\NewsResource\RelationManagers;
 use App\Models\News;
-use Filament\Forms;
-use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
@@ -84,7 +81,7 @@ class NewsResource extends Resource
                     ->reorderableWithDragAndDrop(false)
                     ->deletable(false),
 
-                Forms\Components\FileUpload::make('required_image_path')
+                FileUpload::make('required_image_path')
                     ->required()
                     ->label('Изображение')
                     ->image()
@@ -93,81 +90,9 @@ class NewsResource extends Resource
                     ->getUploadedFileNameForStorageUsing(function ($file) {
                         return $file->getClientOriginalName();
                     }),
-                Builder::make('blocks')
-                    ->blocks([
-                        Builder\Block::make('Content')
-                            ->schema([
-                                //...
-                                RichEditor::make('content')
-                                    ->label('Контент')
-                                    ->toolbarButtons([
-                                        'bold',
-                                        'italic',
-                                        'underline',
-                                        'strike',
-                                        'link',
-                                        'bulletList',
-                                        'orderedList',
-                                        'blockquote',
-                                        'redo',
-                                        'undo',
-                                        'codeBlock'
-                                    ]),
-                            ]),
-                        Builder\Block::make('Image')
-                            ->schema([
-                                //...
-                                FileUpload::make('image_path')
-                                    ->label('Изображение')
-                                    ->image()
-                                    ->directory('uploads/images')
-                                    ->label('Файл')
-                                    ->getUploadedFileNameForStorageUsing(function ($file) {
-                                        return $file->getClientOriginalName();
-                                    })
-                            ]),
-                        Builder\Block::make('Multiple Fields')
-                            ->schema([
-                                //...
-                                TextInput::make('title')
-                                    ->label('Заголовок'),
-                                RichEditor::make('content')
-                                    ->label('Контент')
-                                    ->toolbarButtons([
-                                        'bold',
-                                        'italic',
-                                        'underline',
-                                        'strike',
-                                        'link',
-                                        'bulletList',
-                                        'orderedList',
-                                        'blockquote',
-                                        'redo',
-                                        'undo',
-                                        'codeBlock'
-                                    ]),
-
-                                FileUpload::make('image_path')
-                                    ->label('Изображение')
-                                    ->image()
-                                    ->directory('uploads/images')
-                                    ->label('Файл')
-                                    ->getUploadedFileNameForStorageUsing(function ($file) {
-                                        return $file->getClientOriginalName();
-                                    })
-                            ]),
-                        Builder\Block::make('Цитата (BlockQuote)')
-                            ->schema([
-                                //...
-                                TextInput::make('quote')
-                                    ->label('Цитата'),
-                            ]),
-                    ])
-                    ->label('Блоки')
+                BlockDefinition::BlockElement('blocks')
                     ->minItems(1)
-                    ->maxItems(10)
-                    ->columnSpan('full')
-                    ->collapsible(),
+                    ->maxItems(10),
             ]);
     }
 

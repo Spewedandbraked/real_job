@@ -13,9 +13,13 @@ class Menu extends Model
         'title',
         'slug',
         'section',
+        'blocks',
         'parent_id',
         'order',
         'is_active',
+    ];
+    protected $casts = [
+        'blocks' => 'array',
     ];
 
     public function parent()

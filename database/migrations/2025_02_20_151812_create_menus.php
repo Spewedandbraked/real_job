@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->foreignId('parent_id')->nullable()->constrained('menus')->onDelete('cascade');
             $table->integer('order')->default(0);
             $table->boolean('is_active')->default(true);
+            $table->text('blocks')->nullable();
             $table->timestamps();
         });
     }

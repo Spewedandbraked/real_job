@@ -14,6 +14,7 @@ Route::get('/contacts', [PageController::class, 'contacts'])->name('contacts.ind
 Route::get('/services', [ServicesController::class, 'index'])->name('services.index');
 
 Route::get('/content', [ContentController::class, 'index'])->name('content.index');
+Route::get('/content/{article}', [ContentController::class, 'article'])->name('content.article');
 
 Route::get('/docs', [DocsController::class, 'index'])->name('docs.index');
 

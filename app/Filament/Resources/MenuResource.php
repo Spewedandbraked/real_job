@@ -16,13 +16,15 @@ use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
+use Filament\Forms\Components\Builder;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class MenuResource extends Resource
 {
 
-    public static function getLabel():string
+    public static function getLabel(): string
     {
         return 'Меню';
     }
@@ -50,6 +52,7 @@ class MenuResource extends Resource
                     ->label('')
                     ->label('Секция')
                     ->options([
+                        'aboutUs' => 'Об учреждении',
                         'news' => 'Новости',
                         'services' => 'Услуги',
                         'contacts' => 'Контакты',
@@ -73,6 +76,9 @@ class MenuResource extends Resource
                         0 => 'Не активно',
                     ])
                     ->default(1),
+                BlockDefinition::BlockElement('blocks')
+                    ->minItems(1)
+                    ->maxItems(35),
             ]);
     }
 

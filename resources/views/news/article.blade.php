@@ -122,30 +122,7 @@
                 </picture>
                 <div class="article">
                     <h2><x-news.title :data="$article['title']" /></h2>
-                    @foreach ($article['blocks'] as $key => $block)
-                        @switch($block['type'])
-                            @case('Image')
-                                <picture class="content__picture">
-                                    <source srcset="{{ asset('storage/' . $block['data']['image_path']) }}">
-                                    <img src="{{ asset('storage/' . $block['data']['image_path']) }}" alt width height>
-                                </picture>
-                            @break
-
-                            @case('Content')
-                                <?php $out[0] = $article['blocks'][$key]; ?>
-                                <div class="article__text article__text--cols">
-                                    <x-news.content :data="$out" />
-                                </div>
-                            @break
-
-                            @case('Цитата (BlockQuote)')
-                                <blockquote>{{ $block['data']['quote'] }}</blockquote>
-                            @break
-
-                            @default
-                                @dump($block['type'])
-                        @endswitch
-                    @endforeach
+                    <x-blocks :blocks="$article['blocks']" />
                 </div>
             </div>
             <div class="content__right-block">
