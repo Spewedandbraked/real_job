@@ -28,7 +28,7 @@
                         @csrf
                         <div class="category__line">
                             <input type="hidden" name="date" value="{{ $a }}">
-                            <a href="javascript:void(0);" class="category__item {{ $year == $a ? 'active' : null }}" title
+                            <a href="javascript:void(0);" class="category__item {{ ($year ?? null) == $a ? 'active' : null }}" title
                                 onclick="this.closest('form').submit();return false;">
                                 {{ $a }}
                                 <i class="icon icon-- icon-arrrow-right"></i>
@@ -103,7 +103,7 @@
                                                 alt width="392" height="237">
                                         </picture>
                                         <span class="news-block__info">
-                                            <span class="news-block__date">{{ $article->published_at }}</span>
+                                            <span class="news-block__date">{{ $article->created_at }}</span>
                                             <a href="{{ route('news.article', ['article' => $article['id']]) }}"
                                                 class="news-block__title">
                                                 <x-news.title :data="$article['title']" />

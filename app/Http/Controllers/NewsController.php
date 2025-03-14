@@ -10,10 +10,10 @@ class NewsController extends Controller
 {
     public function index(Request $year)
     {
-        $year['date'] == null ? $news = News::latest()->paginate(5) : $news = News::whereYear('created_at', '=', $year['date'])->paginate(5);
+        $year['date'] == null ? $news = News::latest()->paginate(5) : $news = News::whereYear('created_at', '=', $year['date'])->latest()->paginate(5);
         return view('news/index', [
             'news' => $news,
-            'year' => $year['date'] ?? null,
+            'year' => $year['date'],
         ]);
     }
     public function article($id)
