@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->text('blocks')->nullable();
             $table->string('author')->nullable();
             $table->string('required_image_path')->nullable();
+            $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
     }

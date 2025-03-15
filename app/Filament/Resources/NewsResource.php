@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\NewsResource\Pages;
 use App\Filament\Resources\NewsResource\RelationManagers;
 use App\Models\News;
+use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
@@ -16,6 +17,7 @@ use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -89,6 +91,9 @@ class NewsResource extends Resource
                     ->getUploadedFileNameForStorageUsing(function ($file) {
                         return $file->getClientOriginalName();
                     }),
+                Checkbox::make('is_active')
+                    ->label('Отображать на главной странице?')
+                    ->default(0),
                 BlockDefinition::BlockElement('blocks')
                     ->minItems(1)
                     ->maxItems(10),
@@ -113,6 +118,11 @@ class NewsResource extends Resource
                 })
                     ->label('Заголовок')
                     ->limit(50),
+                IconColumn::make('is_active')
+                    ->label(' ')
+                    ->boolean()
+                    ->trueIcon('heroicon-o-check-circle')
+                    ->falseIcon('heroicon-o-x-circle'),
 
                 Tables\Columns\TextColumn::make('author')
                     ->label('Автор'),

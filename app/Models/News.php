@@ -17,6 +17,7 @@ class News extends Model
         'required_image_path',
         'image_path',
         'blocks',
+        'is_active',
     ];
     protected $casts = [
         'title' => 'array',
