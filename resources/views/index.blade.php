@@ -13,12 +13,15 @@
                     @foreach ($slider_news as $article)
                         <a class="news__slide swiper-slide" href="{{ route('news.article', ['article' => $article['id']]) }}">
                             <picture class="news__picture">
-                                <source srcset="{{ 'storage/' . $article->required_image_path }}" alt="fff" media="(max-width: 767px)">
+                                <source srcset="{{ 'storage/' . $article->required_image_path }}" alt="fff"
+                                    media="(max-width: 767px)">
                                 <img src="{{ 'storage/' . $article->required_image_path }}" alt="fff">
                             </picture>
                             <div class="news__block">
                                 <x-news.title :data="$article['title']" />
-                                <p class="news__date news__date--main">{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $article->created_at)->format('d.m.Y') }}</p>
+                                <p class="news__date news__date--main">
+                                    {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $article->created_at)->format('d.m.Y') }}
+                                </p>
                             </div>
                         </a>
                     @endforeach
@@ -82,57 +85,14 @@
         </ul>
         <div class="company">
             <div class="company__list">
-                <a href="javascript:void(0);" class="company__link" target="_blank">
-                    <picture class="company__picture">
-                        <img class="company__image" src="images/company/img.png" alt width="74" height="74">
-                    </picture>
-                    <span class="company__name">Правительство Московской области</span>
-                </a><a href="javascript:void(0);" class="company__link" target="_blank">
-                    <picture class="company__picture">
-                        <img class="company__image" src="images/company/img-2.png" alt width="74" height="74">
-                    </picture>
-                    <span class="company__name">Министерство экономики и финансов Московской области</span>
-                </a><a href="javascript:void(0);" class="company__link" target="_blank">
-                    <picture class="company__picture">
-                        <img class="company__image" src="images/company/img-3.png" alt width="74" height="74">
-                    </picture>
-                    <span class="company__name">Главгосэкспертиза России</span>
-                </a><a href="javascript:void(0);" class="company__link" target="_blank">
-                    <picture class="company__picture">
-                        <img class="company__image" src="images/company/img-4.png" alt width="74" height="74">
-                    </picture>
-                    <span class="company__name">Минстрой Московской области</span>
-                </a><a href="javascript:void(0);" class="company__link" target="_blank">
-                    <picture class="company__picture">
-                        <img class="company__image" src="images/company/img-2.png" alt width="74" height="74">
-                    </picture>
-                    <span class="company__name">Минжилполитики Московской области</span>
-                </a><a href="javascript:void(0);" class="company__link" target="_blank">
-                    <picture class="company__picture">
-                        <img class="company__image" src="images/company/img-5.png" alt width="74" height="74">
-                    </picture>
-                    <span class="company__name">Ассоциация экспертиз России</span>
-                </a><a href="javascript:void(0);" class="company__link" target="_blank">
-                    <picture class="company__picture">
-                        <img class="company__image" src="images/company/img-6.png" alt width="74" height="74">
-                    </picture>
-                    <span class="company__name">Стройнадзор Московской области</span>
-                </a><a href="javascript:void(0);" class="company__link" target="_blank">
-                    <picture class="company__picture">
-                        <img class="company__image" src="images/company/img-7.png" alt width="74" height="74">
-                    </picture>
-                    <span class="company__name">Мособлархитектура</span>
-                </a><a href="javascript:void(0);" class="company__link" target="_blank">
-                    <picture class="company__picture">
-                        <img class="company__image" src="images/company/img-8.png" alt width="74" height="74">
-                    </picture>
-                    <span class="company__name">Минтранс Московской области</span>
-                </a><a href="javascript:void(0);" class="company__link" target="_blank">
-                    <picture class="company__picture">
-                        <img class="company__image" src="images/company/img-9.png" alt width="74" height="74">
-                    </picture>
-                    <span class="company__name">МинЖКХ Московской области</span>
-                </a>
+                @foreach ($icons as $icon)
+                    <a href="{{$icon->link}}" class="company__link" target="_blank">
+                        <picture class="company__picture">
+                            <img class="company__image" src="{{ 'storage/' . $icon->image }}" alt width="74" height="74">
+                        </picture>
+                        <span class="company__name">{{$icon->title}}</span>
+                    </a>
+                @endforeach
             </div>
         </div>
     </div>

@@ -1,32 +1,39 @@
 @extends('layouts.main')
-@section('title','Контакты')
+@section('title', 'Контакты')
 @section('content')
     <div class="container container--small">
         <section class="contacts">
             <ul class="contacts__list">
+                <?php
+                
+                $contacts = file_exists('contacts.json') ? json_decode(file_get_contents('contacts.json'), true) : null;
+                
+                ?>
                 <li class="contacts__item">
                     <i class="icon icon--phone icon-phone"></i>
                     <h4 class="contacts__title">Телефон</h4>
-                    <a class="contacts__link" href="tel:+74953339419" title="+7 (495) 333 9419">
-                        +7 (495) 333 9419
+                    <a class="contacts__link" href="tel:{{ $contacts['phone'] ?? null }}"
+                        title="{{ $contacts['phone'] ?? null }}">
+                        {{ $contacts['phone'] ?? null }}
                     </a>
                 </li>
                 <li class="contacts__item">
                     <i class="icon icon--mail icon-mail"></i>
                     <h4 class="contacts__title">Электронная почта</h4>
-                    <a class="contacts__link" href="mailto:moexp_info@mosreg.ru" title="moexp_info@mosreg.ru">
-                        moexp_info@mosreg.ru
+                    <a class="contacts__link" href="mailto:{{ $contacts['email'] ?? null }}"
+                        title="{{ $contacts['email'] ?? null }}">
+                        {{ $contacts['email'] ?? null }}
                     </a>
                 </li>
                 <li class="contacts__item">
                     <i class="icon icon--pin icon-pin"></i>
                     <h4 class="contacts__title">адрес</h4>
-                    <span class="contacts__info">Россия, 117342, Москва, ул.&nbsp;Обручева, дом&nbsp;46, к.&nbsp;&#8470;&nbsp;305</span>
+                    <span class="contacts__info">{{ $contacts['pos'] ?? null }}</span>
                 </li>
                 <li class="contacts__item">
                     <i class="icon icon--clock icon-clock"></i>
                     <h4 class="contacts__title">График работы</h4>
-                    <span class="contacts__info">ПН-ПТ 9:00–17:00</span>
+                    <span class="contacts__info">{{ $contacts['thingy'] ?? null }}</span>
                 </li>
             </ul>
         </section>
@@ -47,34 +54,34 @@
                 </h2>
                 <form class="feedback  js-form" autocomplete="off" novalidate="novalidate">
                     <div class="input">
-                        <input class="input__input-field js-form-name" id="name" name="name" placeholder="ФИО" required
-                               type="text">
+                        <input class="input__input-field js-form-name" id="name" name="name" placeholder="ФИО"
+                            required type="text">
                     </div>
                     <div class="feedback__columns">
                         <div class="input input--phone">
                             <input class="input__input-field js-form-phone" id="phone" name="phone"
-                                   placeholder="+7 (999) 999-99-99" required type="tel">
+                                placeholder="+7 (999) 999-99-99" required type="tel">
                         </div>
                         <div class="input">
                             <input class="input__input-field js-form-mail" id="mail" name="mail"
-                                   placeholder="Электронная почта" required type="email">
+                                placeholder="Электронная почта" required type="email">
                         </div>
                     </div>
                     <div class="textarea">
-                        <textarea class="textarea__textarea-field js-form-description" id="description"
-                                  name="description" placeholder="текст сообщения" required></textarea>
+                        <textarea class="textarea__textarea-field js-form-description" id="description" name="description"
+                            placeholder="текст сообщения" required></textarea>
                     </div>
 
                     <div class="checkbox">
                         <input class="checkbox__input" type="checkbox" id="check1" name="name" autocomplete="off"
-                               checked="checked">
+                            checked="checked">
                         <label class="checkbox__name" for="check1">
-    <span class="checkbox__text">
+                            <span class="checkbox__text">
 
-    Нажимая «Отправить», я подтверждаю свое согласие
-    <a href="javascript:void(0);" title>на обработку моих персональных данных</a>
+                                Нажимая «Отправить», я подтверждаю свое согласие
+                                <a href="javascript:void(0);" title>на обработку моих персональных данных</a>
 
-    </span>
+                            </span>
                         </label>
                     </div>
                     <button class="button button--feedback">Отправить
@@ -90,131 +97,132 @@
 
             <table class="timetable timetable--desktop">
                 <thead class="timetable__head">
-                <th class="timetable__hcell timetable__hcell--name"></th>
-                <th class="timetable__hcell">Пн</th>
-                <th class="timetable__hcell">Вт</th>
-                <th class="timetable__hcell">Ср</th>
-                <th class="timetable__hcell">Чт</th>
-                <th class="timetable__hcell">Пт</th>
-                <th class="timetable__hcell timetable__hcell--bright">Сб</th>
-                <th class="timetable__hcell timetable__hcell--bright">Вс</th>
+                    <th class="timetable__hcell timetable__hcell--name"></th>
+                    <th class="timetable__hcell">Пн</th>
+                    <th class="timetable__hcell">Вт</th>
+                    <th class="timetable__hcell">Ср</th>
+                    <th class="timetable__hcell">Чт</th>
+                    <th class="timetable__hcell">Пт</th>
+                    <th class="timetable__hcell timetable__hcell--bright">Сб</th>
+                    <th class="timetable__hcell timetable__hcell--bright">Вс</th>
                 </thead>
                 <tbody class="timetable__body">
-                <tr>
-                    <td class="timetable__cell timetable__cell--name">Отдел приемки документанции и информатизации
-                        экспертной деятельности управления государственной экспертизы
-                    </td>
-                    <td rowspan="5" class="timetable__cell timetable__cell--time">
-                        09:00 - 12:00
-                        <br>
-                        12:45 - 17:00
-                    </td>
-                    <td rowspan="5" class="timetable__cell timetable__cell--time">
-                        09:00 - 12:00
-                        <br>
-                        12:45 - 17:00
-                    </td>
-                    <td rowspan="5" class="timetable__cell timetable__cell--time">
-                        09:00 - 12:00
-                        <br>
-                        12:45 - 17:00
-                    </td>
-                    <td rowspan="5" class="timetable__cell timetable__cell--time">
-                        09:00 - 12:00
-                        <br>
-                        12:45 - 17:00
-                    </td>
-                    <td rowspan="4" class="timetable__cell timetable__cell--time">
-                    </td>
-                    <td class="timetable__cell timetable__cell--time">&nbsp;
-                    </td>
-                    <td class="timetable__cell timetable__cell--time">&nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td class="timetable__cell timetable__cell--name">Экспертные отделы управления государственной
-                        экспертизы
-                    </td>
-                    <td class="timetable__cell timetable__cell--time">&nbsp;
-                    </td>
-                    <td class="timetable__cell timetable__cell--time">&nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td class="timetable__cell timetable__cell--name">Сметный отдел управления ценообразования в
-                        строительстве
-                    </td>
-                    <td class="timetable__cell timetable__cell--time">&nbsp;
-                    </td>
-                    <td class="timetable__cell timetable__cell--time">&nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td class="timetable__cell timetable__cell--name">Отдел по договорной работе</td>
-                    <td class="timetable__cell timetable__cell--time">&nbsp;
-                    </td>
-                    <td class="timetable__cell timetable__cell--time">&nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td class="timetable__cell timetable__cell--name">Другие структурные подразделения учреждения</td>
-                    <td rowspan="4" class="timetable__cell timetable__cell--time">09:00 - 12:00<br>12:45 - 17:00</td>
-                    <td class="timetable__cell timetable__cell--time">&nbsp;
-                    </td>
-                    <td class="timetable__cell timetable__cell--time">&nbsp;
-                    </td>
-                </tr>
+                    <tr>
+                        <td class="timetable__cell timetable__cell--name">Отдел приемки документанции и информатизации
+                            экспертной деятельности управления государственной экспертизы
+                        </td>
+                        <td rowspan="5" class="timetable__cell timetable__cell--time">
+                            09:00 - 12:00
+                            <br>
+                            12:45 - 17:00
+                        </td>
+                        <td rowspan="5" class="timetable__cell timetable__cell--time">
+                            09:00 - 12:00
+                            <br>
+                            12:45 - 17:00
+                        </td>
+                        <td rowspan="5" class="timetable__cell timetable__cell--time">
+                            09:00 - 12:00
+                            <br>
+                            12:45 - 17:00
+                        </td>
+                        <td rowspan="5" class="timetable__cell timetable__cell--time">
+                            09:00 - 12:00
+                            <br>
+                            12:45 - 17:00
+                        </td>
+                        <td rowspan="4" class="timetable__cell timetable__cell--time">
+                        </td>
+                        <td class="timetable__cell timetable__cell--time">&nbsp;
+                        </td>
+                        <td class="timetable__cell timetable__cell--time">&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="timetable__cell timetable__cell--name">Экспертные отделы управления государственной
+                            экспертизы
+                        </td>
+                        <td class="timetable__cell timetable__cell--time">&nbsp;
+                        </td>
+                        <td class="timetable__cell timetable__cell--time">&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="timetable__cell timetable__cell--name">Сметный отдел управления ценообразования в
+                            строительстве
+                        </td>
+                        <td class="timetable__cell timetable__cell--time">&nbsp;
+                        </td>
+                        <td class="timetable__cell timetable__cell--time">&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="timetable__cell timetable__cell--name">Отдел по договорной работе</td>
+                        <td class="timetable__cell timetable__cell--time">&nbsp;
+                        </td>
+                        <td class="timetable__cell timetable__cell--time">&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="timetable__cell timetable__cell--name">Другие структурные подразделения учреждения</td>
+                        <td rowspan="4" class="timetable__cell timetable__cell--time">09:00 - 12:00<br>12:45 - 17:00
+                        </td>
+                        <td class="timetable__cell timetable__cell--time">&nbsp;
+                        </td>
+                        <td class="timetable__cell timetable__cell--time">&nbsp;
+                        </td>
+                    </tr>
                 </tbody>
             </table>
 
             <table class="timetable timetable--mobile">
                 <tbody class="timetable__body">
-                <tr>
-                    <td class="timetable__cell timetable__cell--name">Отдел приемки документанции и информатизации
-                        экспертной деятельности управления государственной экспертизы
-                    </td>
-                    <td class="timetable__cell">
-                        <span>ПН-чт 09:00 - 17:00</span>
-                        <span>(12:00-12:45 перерыв)</span>
-                        <span>ПТ, СБ, ВС - выходной</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="timetable__cell timetable__cell--name">Экспертные отделы управления государственной
-                        экспертизы
-                    </td>
-                    <td class="timetable__cell">
-                        <span>ПН-чт 09:00 - 17:00</span>
-                        <span>(12:00-12:45 перерыв)</span>
-                        <span>ПТ, СБ, ВС - выходной</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="timetable__cell timetable__cell--name">Сметный отдел управления ценообразования в
-                        строительстве
-                    </td>
-                    <td class="timetable__cell">
-                        <span>ПН-чт 09:00 - 17:00</span>
-                        <span>(12:00-12:45 перерыв)</span>
-                        <span>ПТ, СБ, ВС - выходной</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="timetable__cell timetable__cell--name">Отдел по договорной работе</td>
-                    <td class="timetable__cell">
-                        <span>ПН-чт 09:00 - 17:00</span>
-                        <span>(12:00-12:45 перерыв)</span>
-                        <span>ПТ, СБ, ВС - выходной</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="timetable__cell timetable__cell--name">Другие структурные подразделения учреждения</td>
-                    <td class="timetable__cell">
-                        <span>ПН-чт 09:00 - 17:00</span>
-                        <span>(12:00-12:45 перерыв)</span>
-                        <span>СБ, ВС - выходной</span>
-                    </td>
-                </tr>
+                    <tr>
+                        <td class="timetable__cell timetable__cell--name">Отдел приемки документанции и информатизации
+                            экспертной деятельности управления государственной экспертизы
+                        </td>
+                        <td class="timetable__cell">
+                            <span>ПН-чт 09:00 - 17:00</span>
+                            <span>(12:00-12:45 перерыв)</span>
+                            <span>ПТ, СБ, ВС - выходной</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="timetable__cell timetable__cell--name">Экспертные отделы управления государственной
+                            экспертизы
+                        </td>
+                        <td class="timetable__cell">
+                            <span>ПН-чт 09:00 - 17:00</span>
+                            <span>(12:00-12:45 перерыв)</span>
+                            <span>ПТ, СБ, ВС - выходной</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="timetable__cell timetable__cell--name">Сметный отдел управления ценообразования в
+                            строительстве
+                        </td>
+                        <td class="timetable__cell">
+                            <span>ПН-чт 09:00 - 17:00</span>
+                            <span>(12:00-12:45 перерыв)</span>
+                            <span>ПТ, СБ, ВС - выходной</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="timetable__cell timetable__cell--name">Отдел по договорной работе</td>
+                        <td class="timetable__cell">
+                            <span>ПН-чт 09:00 - 17:00</span>
+                            <span>(12:00-12:45 перерыв)</span>
+                            <span>ПТ, СБ, ВС - выходной</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="timetable__cell timetable__cell--name">Другие структурные подразделения учреждения</td>
+                        <td class="timetable__cell">
+                            <span>ПН-чт 09:00 - 17:00</span>
+                            <span>(12:00-12:45 перерыв)</span>
+                            <span>СБ, ВС - выходной</span>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </section>
@@ -254,7 +262,8 @@
             <ul class="details__list">
                 <li class="details__item">
                     <span class="details__title">Полное наименование</span>
-                    <span class="details__info">Государственное автономное учреждение Московской области «Московская областная государственная экспертиза»</span>
+                    <span class="details__info">Государственное автономное учреждение Московской области «Московская
+                        областная государственная экспертиза»</span>
                 </li>
                 <li class="details__item">
                     <span class="details__title">Код отрасли по ОКОНХ</span>
@@ -270,8 +279,8 @@
                 </li>
                 <li class="details__item">
                     <span class="details__title">Адрес места нахождения (юридический адрес)</span>
-                    <span
-                        class="details__info">143403, Московская область, г. Красногорск, ул. Речная, д. 25А, офис 35Б</span>
+                    <span class="details__info">143403, Московская область, г. Красногорск, ул. Речная, д. 25А, офис
+                        35Б</span>
                 </li>
                 <li class="details__item">
                     <span class="details__title">Банк получателя</span>
@@ -299,7 +308,8 @@
                 </li>
                 <li class="details__item">
                     <span class="details__title">Получатель</span>
-                    <span class="details__info">Министерство экономики и&nbsp;финансов Московской области (МЭФ&nbsp;МО) (л/с 30008LШЩ440&nbsp;ГАУ МО &laquo;Мособлогэкспертиза&raquo;)</span>
+                    <span class="details__info">Министерство экономики и&nbsp;финансов Московской области (МЭФ&nbsp;МО)
+                        (л/с 30008LШЩ440&nbsp;ГАУ МО &laquo;Мособлогэкспертиза&raquo;)</span>
                 </li>
                 <li class="details__item">
                     <span class="details__title">ОГРН</span>

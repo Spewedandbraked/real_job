@@ -42,25 +42,29 @@
                 </form>
             </div>
             <div class="social social--header">
-
-                <a href="tel:+74953339419" class="link link--phone">+7(495)333-94-19
+                <?php
+                
+                $contacts = file_exists('contacts.json') ? json_decode(file_get_contents('contacts.json'), true) : null;
+                
+                ?>
+                <a href="tel:{{$contacts['phone'] ?? null}}" class="link link--phone">{{ $contacts['phone'] ?? '+7-000-000-00-00' }}
                 </a>
 
 
                 <div class="social__list">
-                    <a href="javascript:void(0);" class="social__link" target="_blank">
+                    <a href="{{ $contacts['vk'] ?? 'javascript:void(0);' }}" class="social__link" target="_blank">
                         <img class="social__image" src="{{ asset('images/social/vk.svg') }}" alt width="32"
                             height="32">
-                    </a><a href="javascript:void(0);" class="social__link" target="_blank">
+                    </a><a href="{{ $contacts['tg'] ?? 'javascript:void(0);' }}" class="social__link" target="_blank">
                         <img class="social__image" src="{{ asset('images/social/tg.svg') }}" alt width="32"
                             height="32">
-                    </a><a href="javascript:void(0);" class="social__link" target="_blank">
+                    </a><a href="{{ $contacts['ok'] ?? 'javascript:void(0);' }}" class="social__link" target="_blank">
                         <img class="social__image" src="{{ asset('images/social/ok.svg') }}" alt width="32"
                             height="32">
-                    </a><a href="javascript:void(0);" class="social__link" target="_blank">
+                    </a><a href="{{ $contacts['rt'] ?? 'javascript:void(0);' }}" class="social__link" target="_blank">
                         <img class="social__image" src="{{ asset('images/social/ru.svg') }}" alt width="32"
                             height="32">
-                    </a><a href="javascript:void(0);" class="social__link" target="_blank">
+                    </a><a href="{{ $contacts['yd'] ?? 'javascript:void(0);' }}" class="social__link" target="_blank">
                         <img class="social__image" src="{{ asset('images/social/smth.svg') }}" alt width="32"
                             height="32">
                     </a>
