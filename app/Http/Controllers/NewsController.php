@@ -8,12 +8,17 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
-    public function index(Request $year)
+    public function index()
     {
-        $year['date'] == null ? $news = News::latest()->paginate(5) : $news = News::whereYear('created_at', '=', $year['date'])->latest()->paginate(5);
+        $year = request()->year ?? null;
+        $page = request()->page ?? 1;
+
+        ($year == null) ? $news = News::latest() : $news = News::whereYear('created_at', '=', $year)->latest();
+        $news = $news->paginate(10, ['*'], 'page', $page);
         return view('news/index', [
             'news' => $news,
-            'year' => $year['date'],
+            'year' => $year,
+            'page' => $news->currentPage()
         ]);
     }
     public function article($id)

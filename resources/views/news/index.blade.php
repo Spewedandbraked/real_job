@@ -11,7 +11,7 @@
             </button>
             <div class="category__list js-scroll category__list--nonum">
                 <div class="category__line">
-                    <a href="javascript:void(0);" class="category__item category__item--main active" title>
+                    <a href="{{ route('news.index') }}" class="category__item category__item--main active" title>
                         Новости
 
 
@@ -24,17 +24,14 @@
                 $a = now()->year;
                 ?>
                 @while ($a > 2016)
-                    <form method="POST" action="{{ route('news.date') }}" class="p-1">
-                        @csrf
-                        <div class="category__line">
-                            <input type="hidden" name="date" value="{{ $a }}">
-                            <a href="javascript:void(0);" class="category__item {{ ($year ?? null) == $a ? 'active' : null }}" title
-                                onclick="this.closest('form').submit();return false;">
-                                {{ $a }}
-                                <i class="icon icon-- icon-arrrow-right"></i>
-                            </a>
-                        </div>
-                    </form>
+                    <div class="category__line">
+                        <input type="hidden" name="date" value="{{ $a }}">
+                        <a href="{{ route('news.index', ['year' => $a]) }}"
+                            class="category__item {{ ($year ?? null) == $a ? 'active' : null }}" title>
+                            {{ $a }}
+                            <i class="icon icon-- icon-arrrow-right"></i>
+                        </a>
+                    </div>
                     <?php
                     $a--;
                     ?>
@@ -63,7 +60,7 @@
                                     <a href="{{ route('news.article', ['article' => $article['id']]) }}"
                                         class="news-archive__link">
                                         <span class="news-archive__title">
-                                            {{ $article['published_at'] }}
+                                            {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $article['created_at'])->format('d.m.Y') }}
                                         </span>
                                         <span class="news-archive__text"><x-news.content :data="$article['blocks']"
                                                 :cutter="true" /></span>
@@ -103,7 +100,8 @@
                                                 alt width="392" height="237">
                                         </picture>
                                         <span class="news-block__info">
-                                            <span class="news-block__date">{{ $article->created_at }}</span>
+                                            <span
+                                                class="news-block__date">{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $article->created_at)->format('d.m.Y') }}</span>
                                             <a href="{{ route('news.article', ['article' => $article['id']]) }}"
                                                 class="news-block__title">
                                                 <x-news.title :data="$article['title']" />
@@ -118,17 +116,24 @@
                             @endisset
                         </ul>
                         <div class="pagination">
-                            <a href="javascript:void(0);" class="pagination__link pagination__link--prev" title><i
-                                    class="icon icon--undefined icon-pagination-arrow"></i></a>
-
-                            <a href="javascript:void(0);" class="pagination__link active" title>1</a>
-                            <a href="javascript:void(0);" class="pagination__link" title>2</a>
-                            <a href="javascript:void(0);" class="pagination__link" title>3</a>
-                            <a href="javascript:void(0);" class="pagination__link" title>4</a>
-                            <a href="javascript:void(0);" class="pagination__link" title>5</a>
-
-                            <a href="javascript:void(0);" class="pagination__link pagination__link--next" title><i
-                                    class="icon icon--undefined icon-pagination-arrow"></i></a>
+                            @if ($news->currentPage() > 1)
+                                <a href="{{ $news->previousPageUrl() }}" class="pagination__link pagination__link--prev"
+                                    title><i class="icon icon--undefined icon-pagination-arrow"></i></a>
+                            @endif
+                            <?php
+                            $b = $c = $news->currentPage();
+                            $c += 5;
+                            ?>
+                            @while ($b <= $news->lastPage() && $b < $c)
+                                <a href="{{ route('news.index', ['year' => $year ?? null, 'page' => $b]) }}"
+                                    class="pagination__link {{ $news->currentPage() == $b ? 'active' : null }}"
+                                    title>{{ $b }}</a>
+                                <?php $b++; ?>
+                            @endwhile
+                            @if ($news->currentPage() < $news->lastPage())
+                                <a href="javascript:void(0);" class="pagination__link pagination__link--next" title><i
+                                        class="icon icon--undefined icon-pagination-arrow"></i></a>
+                            @endif
                         </div>
                     </div>
                 </div>
