@@ -17,6 +17,7 @@ use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\CheckboxColumn;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -118,12 +119,8 @@ class NewsResource extends Resource
                 })
                     ->label('Заголовок')
                     ->limit(50),
-                IconColumn::make('is_active')
-                    ->label(' ')
-                    ->boolean()
-                    ->trueIcon('heroicon-o-check-circle')
-                    ->falseIcon('heroicon-o-x-circle'),
-
+                CheckboxColumn::make('is_active')
+                    ->label(''),
                 Tables\Columns\TextColumn::make('author')
                     ->label('Автор'),
 
