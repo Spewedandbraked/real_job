@@ -123,8 +123,9 @@
                             <?php
                             $b = $c = $news->currentPage();
                             $c += 5;
+                            $news->lastPage() == 1 ? ($forbidden = true) : ($forbidden = false);
                             ?>
-                            @while ($b <= $news->lastPage() && $b < $c)
+                            @while ($b <= $news->lastPage() && $b < $c &! $forbidden)
                                 <a href="{{ route('news.index', ['year' => $year ?? null, 'page' => $b]) }}"
                                     class="pagination__link {{ $news->currentPage() == $b ? 'active' : null }}"
                                     title>{{ $b }}</a>
